@@ -1,37 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy: MonoBehaviour
 {
-    [SerializeField] float health = 3f;
-    [SerializeField] float damageToPlayer = 1f;  // Düşmanın oyuncuya vereceği hasar
-    private float maxHealth;
+  [SerializeField] float health, maxhealth=3f;
 
-    private void Start()
+  private void Start(){
+
+health=maxhealth;
+
+  }
+
+public void TakeDamage(float damageAmount)
+{
+
+    health -= damageAmount;
+
+    if(health <= 0)
     {
-        maxHealth = health;
+        Destroy(gameObject);
     }
+}
 
-    public void TakeDamage(float damageAmount)
-    {
-        health -= damageAmount;
-
-        if (health <= 0)
-        {
-            Destroy(gameObject); // Düşman öldüğünde yok olur
-        }
-    }
-
-    // Düşmanla çarpışınca oyuncuya hasar ver
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Oyuncuya hasar ver
-            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-            if (playerStats != null)
-            {
-                playerStats.TakeDamage(damageToPlayer); // Oyuncunun canını azalt
-            }
-        }
-    }
 }

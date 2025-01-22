@@ -58,7 +58,9 @@ public class PlayerStats : MonoBehaviour
 
     public void DealDamage()
     {
-        IncreaseSorrow(10f);
+        // Decrease damage by 1 and increase sorrow by 10
+        currentDamage = Mathf.Max(currentDamage - 1f, 1f); // Decrease damage by 1 but ensure it doesn't go below 1
+        IncreaseSorrow(10f); // Increase sorrow by 10
     }
 
     public void IncreaseSorrow(float amount)

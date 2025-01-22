@@ -21,7 +21,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
-            enemyComponent.TakeDamage(1); 
+            // Enemy hasar alırken Sorrow artacak ve damage azalacak
+            enemyComponent.TakeDamage(1);
+            FindObjectOfType<PlayerStats>().IncreaseSorrow(10); // Sorrow arttıkça damage azalacak
             Destroy(gameObject);         
         }
         else if (!collision.gameObject.CompareTag("Player"))
@@ -35,4 +37,5 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
 

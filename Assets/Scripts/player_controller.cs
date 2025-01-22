@@ -7,11 +7,11 @@ public class player_controller : MonoBehaviour
     [Header("Components")]
     public Rigidbody2D rb;
     
-
     [Header("Game Play")]
     public float speed;
     private Vector2 movement;
     public int playerHealth = 3;
+
     void Start()
     {
         
@@ -19,9 +19,7 @@ public class player_controller : MonoBehaviour
 
     void Update()
     {    
-
         FlipCharacter();
-
 
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
@@ -30,21 +28,13 @@ public class player_controller : MonoBehaviour
             movement.x * speed,
             movement.y * speed
         );
-
-      
     }
 
-  
-
- void FlipCharacter()
+    void FlipCharacter()
     {
-        
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        
         Vector3 playerPosition = transform.position;
 
-        
         if (mousePosition.x > playerPosition.x)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0); 
@@ -54,6 +44,4 @@ public class player_controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0); 
         }
     }
-
-
 }

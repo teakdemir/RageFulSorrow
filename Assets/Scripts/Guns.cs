@@ -14,7 +14,7 @@ public class Guns : MonoBehaviour
     [Header("Shooting Settings")]
     public float fireRate = 0.5f;   
     private float nextFireTime = 0f;
-    
+
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(

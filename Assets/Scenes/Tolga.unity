@@ -972,10 +972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41483135539ef3a49a3fb874f431f569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  maxHealth: 3
-  damageAmount: 1
-  collisionRadius: 0.5
+  health: 100
+  maxHealth: 100
+  damageAmount: 5
+  attackCooldown: 1
+  pushForce: 500
 --- !u!1 &1333476760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,12 +1466,12 @@ MonoBehaviour:
   RageBarFill: {fileID: 128842159}
   HealthBarFill: {fileID: 1342781878}
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   maxSorrow: 100
   maxRage: 100
   currentSorrow: 0
   currentRage: 0
-  baseDamage: 10
+  currentDamage: 10
 --- !u!1 &1833332448
 GameObject:
   m_ObjectHideFlags: 0

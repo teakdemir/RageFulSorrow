@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     public Rigidbody2D rb;
-    
+
     [Header("Game Play")]
     public float speed;
     private Vector2 movement;
     public int playerHealth = 3;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
-    {    
+    {
         FlipCharacter();
 
         movement.x = Input.GetAxis("Horizontal");
@@ -37,11 +32,12 @@ public class player_controller : MonoBehaviour
 
         if (mousePosition.x > playerPosition.x)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0); 
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0); 
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }
+

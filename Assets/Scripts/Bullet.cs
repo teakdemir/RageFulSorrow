@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;       
+    public float speed = 10f;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -21,14 +21,13 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
-            // Enemy hasar alırken Sorrow artacak ve damage azalacak
             enemyComponent.TakeDamage(1);
-            FindObjectOfType<PlayerStats>().IncreaseSorrow(10); // Sorrow arttıkça damage azalacak
-            Destroy(gameObject);         
+            FindObjectOfType<PlayerStats>().IncreaseSorrow(10);
+            Destroy(gameObject);
         }
         else if (!collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);         
+            Destroy(gameObject);
         }
     }
 
@@ -37,5 +36,6 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
 
 

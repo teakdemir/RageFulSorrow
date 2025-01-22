@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     [Header("UI References")]
-    public Image SorrowBarFill;  // Sorrow bar dolum kısmı
-    public Image RageBarFill;    // Rage bar dolum kısmı
-    public Image HealthBarFill;  // Health bar dolum kısmı
+    public Image SorrowBarFill;
+    public Image RageBarFill;
+    public Image HealthBarFill;
 
     [Header("Gameplay Stats")]
     public float maxHealth = 100f;
@@ -15,27 +15,40 @@ public class PlayerStats : MonoBehaviour
     public float maxRage = 100f;
     public float currentSorrow = 0f;
     public float currentRage = 0f;
-    public float baseDamage = 10f;
-    private float currentDamage;
+    public float currentDamage = 10f;
 
     void Start()
     {
         currentHealth = maxHealth;
-        currentDamage = baseDamage;
+        currentDamage = 10f;
     }
 
     void Update()
     {
-        // Barların dolum oranlarını güncelle
+        UpdateUI();
+        UpdateDamage();
+    }
+
+    void UpdateUI()
+    {
         SorrowBarFill.fillAmount = currentSorrow / maxSorrow;
         RageBarFill.fillAmount = currentRage / maxRage;
         HealthBarFill.fillAmount = currentHealth / maxHealth;
+    }
+
+    void UpdateDamage()
+    {
+        // Base damage is 10
+        // Rage increases damage, Sorrow decreases it
+        currentDamage = 10f + (currentRage / 10) - (currentSorrow / 10);
+        currentDamage = Mathf.Max(currentDamage, 1f); // Minimum damage is 1
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        IncreaseRage(10f);
 
         if (currentHealth <= 0)
         {
@@ -43,22 +56,17 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void Heal(float healAmount)
+    public void DealDamage()
     {
-        currentHealth += healAmount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        IncreaseSorrow(10f);
     }
 
     public void IncreaseSorrow(float amount)
     {
         currentSorrow += amount;
         currentSorrow = Mathf.Clamp(currentSorrow, 0, maxSorrow);
-
-        // Sorrow arttıkça Rage azalacak
         currentRage -= amount;
         currentRage = Mathf.Clamp(currentRage, 0, maxRage);
-
-        currentDamage = baseDamage * (1f - (currentSorrow / maxSorrow));
 
         if (currentSorrow >= maxSorrow)
         {
@@ -70,12 +78,8 @@ public class PlayerStats : MonoBehaviour
     {
         currentRage += amount;
         currentRage = Mathf.Clamp(currentRage, 0, maxRage);
-
-        // Rage arttıkça Sorrow azalacak
         currentSorrow -= amount;
         currentSorrow = Mathf.Clamp(currentSorrow, 0, maxSorrow);
-
-        currentDamage = baseDamage * (1f + (currentRage / maxRage));
 
         if (currentRage >= maxRage)
         {

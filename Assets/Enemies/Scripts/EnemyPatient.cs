@@ -1,12 +1,12 @@
 using UnityEngine;
-/*bu arkadasimiz yakin dovuscu*/
-
-public class EnemyDoctor : MonoBehaviour
+/*bu arkadas da range'e girince patliyor manyak bi sey*/
+public class EnemyPatient : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject player;
     public float speed;
     public float chaseRange;
+    public Animator animator;
+
     private float distance;
     private bool isChasing = false;
     void Start()
@@ -23,6 +23,8 @@ public class EnemyDoctor : MonoBehaviour
 
         if (isChasing)
         {
+            isChasing = true;
+            animator.SetBool("IsWalking", true);
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 player.transform.position,

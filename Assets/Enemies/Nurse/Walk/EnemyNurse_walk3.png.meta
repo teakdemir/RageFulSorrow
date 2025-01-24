@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EnemyNurse_walk3_0: 230108188380553940
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

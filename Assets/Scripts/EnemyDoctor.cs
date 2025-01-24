@@ -12,7 +12,7 @@ public class EnemyDoctor : MonoBehaviour
     private float distance;
     private bool isChasing = false;
     
-    public float health = 100f, maxHealth = 100f;
+    public float currentHealth = 100f, maxHealth = 100f;
     public float pushForce = 4f;
     float damageAmount = 10f;
     float attackCooldown = 0.2f;
@@ -21,7 +21,7 @@ public class EnemyDoctor : MonoBehaviour
 
     private void Start()
     {
-        health = maxHealth;
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -65,18 +65,14 @@ public class EnemyDoctor : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        health -= damageAmount;
-        Debug.Log("Agghhhhhhh");
-
-        /*BU YORUM SATIRLARI MERGE EDÝNCE AÇILACAK
-         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        currentHealth -= damageAmount;
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats != null)
         {
-            // Player'ýn sorrow mekanizmasý ile etkileþim
             playerStats.DealDamage();
-        }*/
+        }
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

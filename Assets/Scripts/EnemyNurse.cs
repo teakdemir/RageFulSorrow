@@ -80,12 +80,11 @@ public class EnemyNurse : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        /* BU YORUM SATIRLARI MERGE EDÝNCE AÇILACAK
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats != null)
         {
             playerStats.DealDamage();
-        }*/
+        }
 
         if (currentHealth <= 0)
         {

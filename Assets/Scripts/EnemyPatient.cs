@@ -37,7 +37,7 @@ public class EnemyPatient : MonoBehaviour
                 playerPos.position,
                 speed * Time.deltaTime
             );
-            if (distance <= 1.5f) // Patlama mesafesi
+            if (distance <= 2f) // Patlama mesafesi
             {
                 Explode();
             }
@@ -46,7 +46,7 @@ public class EnemyPatient : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        /*BU YORUM SATIRLARI MERGE EDÝNCE AÇILACAK
+        /*BU YORUM SATIRLARI MERGE EDï¿½NCE Aï¿½ILACAK
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats != null)
         {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,10 +18,14 @@ public class PlayerStats : MonoBehaviour
     public float currentRage = 0f;
     public float currentDamage = 10f;
 
+    private Rigidbody2D rb;
+    private bool isPushed = false;
+
     void Start()
     {
         currentHealth = maxHealth;
         currentDamage = 10f;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -89,6 +94,23 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    //player itildiğinde sonsuza kadar itilmesin diye bu ve altındaki
+    public void Push(Vector2 pushDirection, float pushForce)
+    {
+        if (!isPushed)
+        {
+            StartCoroutine(PushCoroutine(pushDirection, pushForce));
+        }
+    }
+    IEnumerator PushCoroutine(Vector2 pushDirection, float pushForce)
+    {
+        isPushed = true;
+        rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        rb.linearVelocity = Vector2.zero;
+        isPushed = false;
+    }
+
     void Die()
     {
         Debug.Log("Player has died.");
@@ -98,5 +120,5 @@ public class PlayerStats : MonoBehaviour
     public float GetCurrentDamage()
     {
         return currentDamage;
-    }
+    }
 }

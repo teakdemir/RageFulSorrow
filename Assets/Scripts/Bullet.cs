@@ -28,16 +28,30 @@ public class Bullet : MonoBehaviour
     [System.Obsolete]
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        if (collision.gameObject.CompareTag("EnemyNurse"))
         {
-            // PlayerStats içindeki currentDamage'i kullanarak hasar ver
-            if (playerStats != null)
-            {
-                enemyComponent.TakeDamage(playerStats.GetCurrentDamage());
-                
-            }
-
-           
+            EnemyNurse nurse=collision.gameObject.GetComponent<EnemyNurse>();
+             
+            
+                nurse.TakeDamage(playerStats.GetCurrentDamage());
+            
+            Destroy(gameObject);
+        } else  if (collision.gameObject.CompareTag("EnemyDoctor"))
+        {
+            EnemyDoctor Doc=collision.gameObject.GetComponent<EnemyDoctor>();
+             
+            
+                Doc.TakeDamage(playerStats.GetCurrentDamage());
+            
+            Destroy(gameObject);
+        }
+        else  if (collision.gameObject.CompareTag("EnemyPatient"))
+        {
+            EnemyPatient patient=collision.gameObject.GetComponent<EnemyPatient>();
+             
+            
+                patient.TakeDamage(playerStats.GetCurrentDamage());
+            
             Destroy(gameObject);
         }
         else if (!collision.gameObject.CompareTag("Player"))

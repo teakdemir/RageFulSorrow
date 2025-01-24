@@ -30,18 +30,25 @@ public class ScissorsScript : MonoBehaviour
                 playerStats.Push(pushDirection, force);
             }
 
-            // Makasý yok et
+            // Makasï¿½ yok et
             Destroy(gameObject);
         }
-        else if (!collision.gameObject.CompareTag("Enemy"))
+        else if (!collision.gameObject.CompareTag("EnemyDoctor"))
+        {
+            Destroy(gameObject);
+        }  else if (!collision.gameObject.CompareTag("EnemyNurse"))
+        {
+            Destroy(gameObject);
+        }  else if (!collision.gameObject.CompareTag("EnemyPatient"))
         {
             Destroy(gameObject);
         }
+       
     }
 
     private void OnBecameInvisible()
     {
-        // Makas görünmez olduðunda yok et
+        // Makas gï¿½rï¿½nmez olduï¿½unda yok et
         Destroy(gameObject);
     }
 

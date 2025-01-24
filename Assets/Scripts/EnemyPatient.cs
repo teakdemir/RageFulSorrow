@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
 using UnityEngine;
 /*bu arkadas da range'e girince patliyor manyak bi sey*/
 public class EnemyPatient : MonoBehaviour
 {
+
+    private  PlayerStats playerStats;
     public GameObject player;
     public float speed;
     public float chaseRange;
@@ -15,7 +18,8 @@ public class EnemyPatient : MonoBehaviour
     private float distance;
     private bool isChasing = false;
     void Start()
-    {
+    {   
+        playerStats=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         currentHealth = maxHealth;
     }
 
@@ -43,20 +47,19 @@ public class EnemyPatient : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(float damageAmount)
+public void TakeDamage(float damageAmount)
     {
-        currentHealth -= damageAmount;
-        /*BU YORUM SATIRLARI MERGE ED�NCE A�ILACAK
+       currentHealth -= damageAmount;
+
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats != null)
         {
             playerStats.DealDamage();
         }
-        */
 
         if (currentHealth <= 0)
         {
-            Die();
+            Destroy(gameObject);
         }
     }
     void Explode()

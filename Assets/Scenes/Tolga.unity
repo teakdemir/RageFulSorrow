@@ -1081,8 +1081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.06674967, g: 0.28507695, b: 0.4716981, a: 1}
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.26808822, g: 0.3996308, b: 0.87169814, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1728962576}
   speed: 10
-  playerHealth: 100
+  playerHealth: 3
 --- !u!61 &1728962575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   RageBarFill: {fileID: 128842159}
   HealthBarFill: {fileID: 1342781878}
   maxHealth: 100
-  currentHealth: 100
+  currentHealth: 0
   maxSorrow: 100
   maxRage: 100
   currentSorrow: 0

@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     public float maxRage = 100f;
     public float currentSorrow = 0f;
     public float currentRage = 0f;
-    public float currentDamage = 10f;
+    public float currentDamage = 20f;
 
     private Rigidbody2D rb;
     private bool isPushed = false;
@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentDamage = 10f;
+        currentDamage = 20f;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     {
         // Base damage is 10
         // Rage increases damage, Sorrow decreases it
-        currentDamage = 10f + (currentRage / 10) - (currentSorrow / 10);
+        currentDamage = 20f + (currentRage / 10) - (currentSorrow / 10);
         currentDamage = Mathf.Max(currentDamage, 1f); // Minimum damage is 1
     }
 
@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        IncreaseRage(10f);
+        IncreaseRage(5f);
 
         if (currentHealth <= 0)
         {
@@ -65,7 +65,7 @@ public class PlayerStats : MonoBehaviour
     {
         // Decrease damage by 1 and increase sorrow by 10
         currentDamage = Mathf.Max(currentDamage - 1f, 1f); // Decrease damage by 1 but ensure it doesn't go below 1
-        IncreaseSorrow(10f); // Increase sorrow by 10
+        IncreaseSorrow(5f); // Increase sorrow by 10
     }
 
     public void IncreaseSorrow(float amount)
@@ -113,7 +113,7 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player has died.");
+        
         Destroy(gameObject);
     }
 

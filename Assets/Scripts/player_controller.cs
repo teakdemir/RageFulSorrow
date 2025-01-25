@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Game Play")]
     public float speed;
     private Vector2 movement;
-    public int playerHealth = 3;
+    
 
     void Update()
     {

@@ -1,23 +1,32 @@
 using UnityEngine;
-/*bu arkadas uzak dovuscu bi seyler firlatiyor*/
 
+/* Bu arkadaş uzak dövüşçü, bir şeyler fırlatıyor */
 public class EnemyNurse : MonoBehaviour
 {
+    [Header("Player Interaction")]
     public GameObject player;
     public float speed;
     public float chaseRange;
     public float attackRange;
     public Animator animator;
 
-    public float currentHealth = 100f, maxHealth = 100f;
+    [Header("Health")]
+    public float currentHealth = 100f;
+    public float maxHealth = 100f;
+
+    [Header("Combat")]
     public float pushForce = 5f;
-    float damageAmount = 5f;
-    float collideCooldown = 0.3f;
+    public float damageAmount = 5f;
+    public float collideCooldown = 0.3f;
     private float nextCollideTime;
+
+    [Header("Loot")]
+    public GameObject heartPrefab; // Can prefab'ı (ör. Heart16)
 
     private Transform playerPos;
     private float distance;
     private bool isChasing = false;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -34,7 +43,7 @@ public class EnemyNurse : MonoBehaviour
             {
                 isChasing = true;
                 animator.SetBool("IsWalking", true);
-                // Chase the player
+                // Oyuncuya yaklaş
                 transform.position = Vector2.MoveTowards(
                     transform.position,
                     playerPos.position,
@@ -45,7 +54,7 @@ public class EnemyNurse : MonoBehaviour
             {
                 isChasing = false;
                 animator.SetBool("IsWalking", false);
-                // Attack repeatedly by calling in Update
+                // Saldırı
                 Attack();
             }
         }
@@ -62,8 +71,10 @@ public class EnemyNurse : MonoBehaviour
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
             if (playerStats != null)
             {
+                // Oyuncuya hasar ver
                 playerStats.TakeDamage(damageAmount);
 
+                // Oyuncuyu geri it
                 Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
                 playerStats.Push(pushDirection, pushForce);
             }
@@ -74,18 +85,22 @@ public class EnemyNurse : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Enemy is attacking!");
+        Debug.Log("EnemyNurse is attacking!");
+        // Uzaktan saldırı mantığını buraya ekleyebilirsin
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+
+        // Oyuncunun sorrow barını artır (isteğe bağlı)
         PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         if (playerStats != null)
         {
             playerStats.DealDamage();
         }
 
+        // Can 0'ın altına düştüyse öl
         if (currentHealth <= 0)
         {
             Die();
@@ -94,6 +109,18 @@ public class EnemyNurse : MonoBehaviour
 
     void Die()
     {
+        Debug.Log("EnemyNurse died. Dropping heart...");
+
+        // Heart16 prefab'ını düşür
+        if (heartPrefab != null)
+        {
+            Instantiate(heartPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Heart prefab is not assigned in the Inspector!");
+        }
+
         Destroy(gameObject);
     }
 }

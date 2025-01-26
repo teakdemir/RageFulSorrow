@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5532877207420529612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ScissorsPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 976008553357806741}
   - component: {fileID: 7715411689641821529}
   - component: {fileID: -4647793060218126937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyNurse
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,6 +143,9 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   pushForce: 5
+  damageAmount: 5
+  collideCooldown: 0.3
+  heartPrefab: {fileID: 0}
 --- !u!95 &976008553357806741
 Animator:
   serializedVersion: 7

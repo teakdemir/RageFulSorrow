@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6733844241016186357}
   - component: {fileID: 5570830052224280257}
   - component: {fileID: 6965216515585857093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyPatient
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   animator: {fileID: 5570830052224280257}
   explosionDamage: 20
   maxHealth: 50
+  heartPrefab: {fileID: 0}
 --- !u!95 &5570830052224280257
 Animator:
   serializedVersion: 7

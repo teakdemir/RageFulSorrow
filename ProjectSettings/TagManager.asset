@@ -9,6 +9,8 @@ TagManager:
   - EnemyDoctor
   - EnemyNurse
   - EnemyPatient
+  - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - Bullet
   - Enemy
   - Enemy Bullet
-  - 
-  - 
+  - Wall
+  - Floor
   - 
   - 
   - 

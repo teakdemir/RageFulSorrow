@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6965216515585857093}
   m_Layer: 7
   m_Name: EnemyPatient
-  m_TagString: Enemy
+  m_TagString: EnemyNurse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -4459563507840485625, guid: 9188c5697aac05c489dee89b9df2628e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

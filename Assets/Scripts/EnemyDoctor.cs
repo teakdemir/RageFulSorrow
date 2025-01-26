@@ -25,7 +25,7 @@ public class EnemyDoctor : MonoBehaviour
     [Header("Loot")]
     public GameObject heartPrefab; // Can prefab'ı (Heart16)
 
-    private void Start()
+    private void OnStart()
     {
         currentHealth = maxHealth;
     }
@@ -106,6 +106,5 @@ public class EnemyDoctor : MonoBehaviour
         }
        
         Destroy(gameObject);
-    }
+    }
 }
-

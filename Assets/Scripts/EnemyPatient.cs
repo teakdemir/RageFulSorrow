@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/* Bu arkadaş da range'e girince patlıyor, manyak bir şey */
+/* Bu arkadaş range'e girince patlıyor */
 public class EnemyPatient : MonoBehaviour
 {
     [Header("Player Interaction")]
@@ -17,6 +17,7 @@ public class EnemyPatient : MonoBehaviour
 
     [Header("Loot")]
     public GameObject heartPrefab; // Can prefab'ı (ör. Heart16)
+    private bool hasExploded = false; // Patlama durumu
 
     private Transform playerPos;
     private float distance;
@@ -46,7 +47,7 @@ public class EnemyPatient : MonoBehaviour
             );
 
             // Patlama mesafesi
-            if (distance <= 2f)
+            if (distance <= 2f && !hasExploded)
             {
                 Explode();
             }
@@ -59,6 +60,8 @@ public class EnemyPatient : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (hasExploded) return; // Patladıysa daha fazla işlem yapma
+
         currentHealth -= damageAmount;
 
         if (playerStats != null)
@@ -74,30 +77,34 @@ public class EnemyPatient : MonoBehaviour
 
     void Explode()
     {
+        hasExploded = true;
+
         if (playerStats != null)
         {
             // Oyuncuya patlama hasarı ver
             playerStats.TakeDamage(explosionDamage);
         }
 
-        Die();
+        Destroy(gameObject); // Kendini yok et
     }
 
     void Die()
     {
-        Debug.Log("EnemyPatient died. Dropping heart...");
-
-        // Heart16 prefab'ını düşür
-        if (heartPrefab != null)
+        if (!hasExploded) // Patlamadan önce öldüyse loot bırak
         {
-            Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            Debug.Log("EnemyPatient killed by Player. Dropping heart...");
+            if (heartPrefab != null)
+            {
+                Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            }
         }
         else
         {
-            Debug.LogError("Heart prefab is not assigned in the Inspector!");
+            Debug.Log("EnemyPatient exploded. No loot dropped.");
         }
 
         Destroy(gameObject);
     }
 }
+
 

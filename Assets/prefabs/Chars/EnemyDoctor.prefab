@@ -109,7 +109,7 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   pushForce: 4
-  damageAmount: 10
+  damageAmount: 5
   attackCooldown: 0.2
   heartPrefab: {fileID: 0}
 --- !u!95 &8074987782842128993

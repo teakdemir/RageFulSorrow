@@ -76,19 +76,15 @@ public class EnemyDoctor : MonoBehaviour
             nextAttackTime = Time.time + attackCooldown;
         }
     }
-
+    
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
 
-        // Oyuncunun sorrow barını artırmak için (opsiyonel)
-        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        if (playerStats != null)
-        {
-            playerStats.DealDamage();
-        }
+        // Ensure player stats are found each time
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
+        playerStats?.DealDamage();
 
-        // Canı sıfıra düşerse öl
         if (currentHealth <= 0)
         {
             Die();

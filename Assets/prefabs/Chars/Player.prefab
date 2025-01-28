@@ -505,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7935787383224391186}
   animator: {fileID: 0}
-  speed: 10
+  speed: 0
 --- !u!114 &7042168398363935609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ MonoBehaviour:
   RageBarFill: {fileID: 2093342415041538181}
   HealthBarFill: {fileID: 1549207844711366833}
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   maxSorrow: 100
   maxRage: 100
   currentSorrow: 0

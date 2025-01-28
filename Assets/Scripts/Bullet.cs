@@ -7,74 +7,94 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     private Rigidbody2D rb;
 
-    // PlayerStats referansı
+    // Oyuncu istatistikleri
     private PlayerStats playerStats;
     private PlayerController playerController;
 
-    private void Awake()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    [System.Obsolete]
-    private void Start()
+    void Start()
     {
-        // Mermiye doğru yönünde hız ver
+        // Mermiyi ileri doğru yönünde hareket ettir
         rb.linearVelocity = transform.right * speed;
 
-        // Oyuncu istatistiklerini bul
+        // Sahnedeki PlayerStats referansını bul
         playerStats = FindObjectOfType<PlayerStats>();
 
+        // Ateş animasyonu tetiklenmesi
         playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
         {
             playerController.TriggerShootAnimation();
         }
-
     }
 
-    [System.Obsolete]
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.CompareTag("EnemyNurse"))
         {
-            EnemyNurse nurse=collision.gameObject.GetComponent<EnemyNurse>();
-             
-            
+            EnemyNurse nurse = collision.gameObject.GetComponent<EnemyNurse>();
+            if (nurse != null)
+            {
                 nurse.TakeDamage(playerStats.GetCurrentDamage());
+            }
+
             
-            Destroy(gameObject);
-        } else  if (collision.gameObject.CompareTag("EnemyDoctor"))
-        {
-            EnemyDoctor Doc=collision.gameObject.GetComponent<EnemyDoctor>();
-             
-            
-                Doc.TakeDamage(playerStats.GetCurrentDamage());
-            
+            playerStats.DealDamage();
             Destroy(gameObject);
         }
-        else  if (collision.gameObject.CompareTag("EnemyPatient"))
+       
+        else if (collision.gameObject.CompareTag("EnemyDoctor"))
         {
-            EnemyPatient patient=collision.gameObject.GetComponent<EnemyPatient>();
-             
-            
+            EnemyDoctor doc = collision.gameObject.GetComponent<EnemyDoctor>();
+            if (doc != null)
+            {
+                doc.TakeDamage(playerStats.GetCurrentDamage());
+            }
+
+            playerStats.DealDamage();
+            Destroy(gameObject);
+        }
+        
+        else if (collision.gameObject.CompareTag("EnemyPatient"))
+        {
+            EnemyPatient patient = collision.gameObject.GetComponent<EnemyPatient>();
+            if (patient != null)
+            {
                 patient.TakeDamage(playerStats.GetCurrentDamage());
-            
+            }
+
+            playerStats.DealDamage();
             Destroy(gameObject);
         }
+       
+        else if (collision.gameObject.CompareTag("EnemyBoss"))
+        {
+            
+            BossBehavior boss = collision.gameObject.GetComponent<BossBehavior>();
+            if (boss != null)
+            {
+                boss.TakeDamage(playerStats.GetCurrentDamage());
+            }
+
+            
+            playerStats.DealDamage();
+            Destroy(gameObject);
+        }
+       
         else if (!collision.gameObject.CompareTag("Player"))
         {
-            
             Destroy(gameObject);
         }
     }
 
     private void OnBecameInvisible()
     {
-       
+        
         Destroy(gameObject);
     }
 }
-
-
-

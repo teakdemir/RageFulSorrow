@@ -11,6 +11,9 @@ TagManager:
   - EnemyPatient
   - Wall
   - Floor
+  - EnemyBoss
+  - EnemyBullet
+  - BossBullet
   layers:
   - Default
   - TransparentFX
@@ -23,8 +26,8 @@ TagManager:
   - Enemy Bullet
   - Wall
   - Floor
-  - 
-  - 
+  - Boss
+  - BossBullet
   - 
   - 
   - 

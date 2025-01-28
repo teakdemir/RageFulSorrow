@@ -122,9 +122,16 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        
-        Destroy(gameObject);
+        animator.SetBool("IsDead", true); // Trigger the dying animation
+        StartCoroutine(HandleDeath());
     }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(0.8f); // Wait for the animation duration
+        Destroy(gameObject); // Destroy the GameObject after the animation
+    }
+
 
     public float GetCurrentDamage()
     {

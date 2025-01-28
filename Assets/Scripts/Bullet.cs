@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
 
     // PlayerStats referansı
     private PlayerStats playerStats;
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -23,6 +24,13 @@ public class Bullet : MonoBehaviour
 
         // Oyuncu istatistiklerini bul
         playerStats = FindObjectOfType<PlayerStats>();
+
+        playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.TriggerShootAnimation();
+        }
+
     }
 
     [System.Obsolete]

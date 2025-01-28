@@ -85,7 +85,6 @@ public class EnemyNurse : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("EnemyNurse is attacking!");
         // Uzaktan saldırı mantığını buraya ekleyebilirsin
     }
 

@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     public float currentDamage = 20f;
 
     private Rigidbody2D rb;
+    public Animator animator;
     private bool isPushed = false;
 
     void Start()
@@ -51,6 +52,8 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        animator.SetBool("IsDamaged", true);
+        StartCoroutine(ResetDamageAnimation());
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         IncreaseRage(5f);
@@ -60,11 +63,17 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
+    private IEnumerator ResetDamageAnimation()
+    {
+        yield return new WaitForSeconds(0.3f);  // Adjust this to match your animation length
+        animator.SetBool("IsDamaged", false);
+    }
 
     public void DealDamage()
     {
         // Decrease damage by 1 and increase sorrow by 10
         currentDamage = Mathf.Max(currentDamage - 1f, 1f); // Decrease damage by 1 but ensure it doesn't go below 1
+        
         IncreaseSorrow(5f); // Increase sorrow by 10
     }
 
@@ -113,9 +122,16 @@ public class PlayerStats : MonoBehaviour
 
     void Die()
     {
-        
-        Destroy(gameObject);
+        animator.SetBool("IsDead", true); // Trigger the dying animation
+        StartCoroutine(HandleDeath());
     }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(0.8f); // Wait for the animation duration
+        Destroy(gameObject); // Destroy the GameObject after the animation
+    }
+
 
     public float GetCurrentDamage()
     {

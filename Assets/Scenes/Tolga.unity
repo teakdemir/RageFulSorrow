@@ -1544,6 +1544,7 @@ MonoBehaviour:
   currentSorrow: 0
   currentRage: 0
   currentDamage: 20
+  animator: {fileID: 1728962580}
 --- !u!95 &1728962580
 Animator:
   serializedVersion: 7

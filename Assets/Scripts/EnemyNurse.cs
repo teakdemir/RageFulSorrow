@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /* Bu arkadaş uzak dövüşçü, bir şeyler fırlatıyor */
@@ -126,18 +127,23 @@ public class EnemyNurse : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("EnemyNurse died. Dropping heart...");
+        animator.SetBool("IsDead", true);
+
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        // Wait for animation to complete
+        yield return new WaitForSeconds(0.8f); // Regular WaitForSeconds is fine now
 
         // Heart16 prefab'ını düşür
         if (heartPrefab != null)
         {
             Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
-        else
-        {
-            Debug.LogError("Heart prefab is not assigned in the Inspector!");
-        }
 
+        // Destroy the player
         Destroy(gameObject);
     }
 }

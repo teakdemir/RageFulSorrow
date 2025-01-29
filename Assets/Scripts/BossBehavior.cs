@@ -139,7 +139,7 @@ public class BossBehavior : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         // Wait for animation to complete
-        yield return new WaitForSeconds(2f); // Regular WaitForSeconds is fine now
+        yield return new WaitForSeconds(1.8f); // Regular WaitForSeconds is fine now
 
         // Optional: Add any effects here before destroying
 

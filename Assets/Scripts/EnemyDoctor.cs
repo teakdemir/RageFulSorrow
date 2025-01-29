@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyDoctor : MonoBehaviour
@@ -109,17 +110,26 @@ public class EnemyDoctor : MonoBehaviour
             Die();
         }
     }
-
+    
     void Die()
     {
-       
+        animator.SetBool("IsDead", true);
+
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        // Wait for animation to complete
+        yield return new WaitForSeconds(0.8f); // Regular WaitForSeconds is fine now
 
         // Heart16 prefab'ını düşür
         if (heartPrefab != null)
         {
             Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
-       
+
+        // Destroy the player
         Destroy(gameObject);
-    }
+    }
 }

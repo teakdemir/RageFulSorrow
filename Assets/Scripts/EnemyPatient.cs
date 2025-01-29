@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /* Bu arkadaş range'e girince patlıyor */
@@ -62,7 +63,7 @@ public class EnemyPatient : MonoBehaviour
             // Patlama mesafesi
             if (distance <= 2f && !hasExploded)
             {
-                Explode();
+                Die();
             }
         }
         else
@@ -91,36 +92,28 @@ public class EnemyPatient : MonoBehaviour
         }
     }
 
-    void Explode()
-    {
-        hasExploded = true;
-
-        if (playerStats != null)
-        {
-            // Oyuncuya patlama hasarı ver
-            playerStats.TakeDamage(explosionDamage);
-        }
-
-        Destroy(gameObject); // Kendini yok et
-    }
-
     void Die()
     {
-        if (!hasExploded) // Patlamadan önce öldüyse loot bırak
+        animator.SetBool("IsDead", true);
+
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        // Wait for animation to complete
+        yield return new WaitForSeconds(0.8f); // Regular WaitForSeconds is fine now
+
+        // Heart16 prefab'ını düşür
+        if (heartPrefab != null)
         {
-            Debug.Log("EnemyPatient killed by Player. Dropping heart...");
-            if (heartPrefab != null)
-            {
-                Instantiate(heartPrefab, transform.position, Quaternion.identity);
-            }
-        }
-        else
-        {
-            Debug.Log("EnemyPatient exploded. No loot dropped.");
+            Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
 
+        // Destroy the player
         Destroy(gameObject);
     }
 }
+
 
 

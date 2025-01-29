@@ -95,6 +95,12 @@ public class EnemyPatient : MonoBehaviour
     void Die()
     {
         animator.SetBool("IsDead", true);
+        speed = 0; // **Stop movement**
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero; // **Ensure rigidbody stops moving**
+        }
+        GetComponent<Collider2D>().enabled = false;
 
         StartCoroutine(HandleDeath());
     }

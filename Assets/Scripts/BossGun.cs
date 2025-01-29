@@ -1,36 +1,57 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossGun : MonoBehaviour
 {
-    [Header("Projectile Settings")]
-    public GameObject bossBulletPrefab;
-    public Transform firePoint;
-    public float bulletSpeed = 5f;
+    [Header("Shooting Settings")]
+    public GameObject bossBulletPrefab;  // Fırlatılacak mermi
+    public Transform firePoint;          // Merminin çıkış noktası
+    public float shootInterval = 1f;     // 1 saniyede bir ateş et
+    public float bulletSpeed = 5f;       // Mermi hızı
+    public float angleBetweenBullets = 45f; // Mermiler arasındaki açı
 
     private GameObject player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(ShootRoutine());
     }
 
-    public void Shoot()
+    IEnumerator ShootRoutine()
     {
-        if (player == null) return;
+        while (true)
+        {
+            ShootPattern();
+            yield return new WaitForSeconds(shootInterval);
+        }
+    }
+
+    void ShootPattern()
+    {
         if (bossBulletPrefab == null || firePoint == null)
         {
             Debug.LogWarning("BossGun: bulletPrefab veya firePoint eksik!");
             return;
         }
 
-        GameObject bullet = Instantiate(bossBulletPrefab, firePoint.position, Quaternion.identity);
-        
-        Vector2 direction = (player.transform.position - firePoint.position).normalized;
-        
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        // Oyuncunun yönüne göre mermileri hesapla
+        Vector2 directionToPlayer = (player.transform.position - firePoint.position).normalized;
+        float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+        // 3 mermiyi 45 derece açıyla ateşle
+        for (int i = -1; i <= 1; i++)
         {
-            rb.linearVelocity = direction * bulletSpeed;
+            float bulletAngle = baseAngle + (i * angleBetweenBullets);
+            Quaternion bulletRotation = Quaternion.Euler(0, 0, bulletAngle);
+            GameObject bullet = Instantiate(bossBulletPrefab, firePoint.position, bulletRotation);
+
+            // Mermiye hız ver
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = bulletRotation * Vector2.right * bulletSpeed;
+            }
         }
     }
 }

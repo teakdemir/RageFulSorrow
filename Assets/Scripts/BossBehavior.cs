@@ -14,34 +14,40 @@ public class BossBehavior : MonoBehaviour
     public float chargeSpeed = 8f;
     public float chargeDuration = 2f;
 
-    [Header("Attack Intervals")]
-    public float throwInterval = 5f;
+    [Header("Attack Settings")]
     public float chargeInterval = 10f;
 
+    private Rigidbody2D rb;
     private GameObject player;
     private bool isCharging = false;
     private Vector3 chargeTargetPosition;
-    private Rigidbody2D rb;
+
     private BossGun bossGun;
 
     void Start()
     {
+        // Boss'un gerekli bileşenlerini ayarla
         gameObject.tag = "EnemyBoss";
-        
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        
+
+        // BossGun bileşenini bul
         bossGun = GetComponentInChildren<BossGun>();
-        
-        StartCoroutine(ShootRoutine());
+        if (bossGun == null)
+        {
+            Debug.LogWarning("BossBehavior: BossGun scripti bulunamadı! Ateş etme çalışmaz.");
+        }
+
+        // Charge saldırı başlat
         StartCoroutine(ChargeRoutine());
     }
 
     void Update()
     {
         if (player == null) return;
-        
+
+        // Eğer charge yapmıyorsa normal hızda oyuncuyu takip et
         if (!isCharging)
         {
             FollowPlayer();
@@ -54,44 +60,27 @@ public class BossBehavior : MonoBehaviour
         rb.linearVelocity = direction * moveSpeed;
     }
 
-    IEnumerator ShootRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(throwInterval);
-            
-            if (bossGun != null)
-            {
-                bossGun.Shoot();
-            }
-            else
-            {
-                Debug.LogWarning("BossGun not found in children!");
-            }
-        }
-    }
-
     IEnumerator ChargeRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(chargeInterval);
-            
+
             if (player != null)
             {
                 chargeTargetPosition = player.transform.position;
             }
-            
+
             isCharging = true;
             float startTime = Time.time;
             Vector2 chargeDirection = (chargeTargetPosition - transform.position).normalized;
-            
+
             while (Time.time < startTime + chargeDuration)
             {
                 rb.linearVelocity = chargeDirection * chargeSpeed;
                 yield return null;
             }
-            
+
             isCharging = false;
         }
     }
@@ -111,7 +100,7 @@ public class BossBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -119,6 +108,8 @@ public class BossBehavior : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.TakeDamage(collisionDamage);
+
+                // Oyuncuyu geri it
                 Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
                 playerStats.Push(pushDirection, 5f);
             }

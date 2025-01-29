@@ -25324,6 +25324,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 966117391868950167, guid: fde3ef21cb1e6b54c896f7e9b34b8c27, type: 3}
   m_PrefabInstance: {fileID: 467699972183585221}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &863770089 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7394675487609619024, guid: fde3ef21cb1e6b54c896f7e9b34b8c27, type: 3}
+  m_PrefabInstance: {fileID: 467699972183585221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &867240227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63879,6 +63884,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e49f66d263a860f44a2e81c6184a2944, type: 2}
+    - target: {fileID: 7656736684440769233, guid: fde3ef21cb1e6b54c896f7e9b34b8c27, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 863770089}
     - target: {fileID: 7656736684440769233, guid: fde3ef21cb1e6b54c896f7e9b34b8c27, type: 3}
       propertyPath: healthBar
       value: 

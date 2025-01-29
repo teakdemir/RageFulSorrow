@@ -20,6 +20,8 @@ public class BossBehavior : MonoBehaviour
     public float chargeInterval = 10f;
 
     private Rigidbody2D rb;
+    public Animator animator;
+
     private GameObject player;
     private bool isCharging = false;
     private Vector3 chargeTargetPosition;
@@ -112,9 +114,36 @@ public class BossBehavior : MonoBehaviour
         }
     }
 
+    private bool isDead = false;
+
     void Die()
     {
-        Debug.Log("Boss Died!");
+        if (isDead) return; // Prevent multiple deaths
+
+        isDead = true;
+        GameStateManager.Instance.FreezeGame();
+
+        // Stop all movement
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.isKinematic = true; // This prevents any physics forces from affecting the player
+        }
+
+        animator.SetBool("IsDead", true);
+
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        // Wait for animation to complete
+        yield return new WaitForSeconds(2f); // Regular WaitForSeconds is fine now
+
+        // Optional: Add any effects here before destroying
+
+        // Destroy the player
         Destroy(gameObject);
     }
 

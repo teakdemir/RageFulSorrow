@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Doctor_walk
+  m_Name: Doctor_newidle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -5258110227393830743, guid: 99c408c512a0edd41928acc92737a152, type: 3}
-    - time: 0.16666667
-      value: {fileID: 905440968561088945, guid: 84c2bf954c4721a4baf003e1d9a734ff, type: 3}
+      value: {fileID: 6444062217737001995, guid: 000017bb1f4006540aa28a59f36c30a3, type: 3}
     - time: 0.33333334
-      value: {fileID: -1017276772404219659, guid: b640e4fe6c8dba54094a4dbccd577ae7, type: 3}
+      value: {fileID: 6444062217737001995, guid: fbf05833f66548e4bbd6498b5819c764, type: 3}
+    - time: 0.6666667
+      value: {fileID: -8785122256959473099, guid: 60a2b616ee35005489062228db3b3bd5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -5258110227393830743, guid: 99c408c512a0edd41928acc92737a152, type: 3}
-    - {fileID: 905440968561088945, guid: 84c2bf954c4721a4baf003e1d9a734ff, type: 3}
-    - {fileID: -1017276772404219659, guid: b640e4fe6c8dba54094a4dbccd577ae7, type: 3}
+    - {fileID: 6444062217737001995, guid: 000017bb1f4006540aa28a59f36c30a3, type: 3}
+    - {fileID: 6444062217737001995, guid: fbf05833f66548e4bbd6498b5819c764, type: 3}
+    - {fileID: -8785122256959473099, guid: 60a2b616ee35005489062228db3b3bd5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.4166667
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

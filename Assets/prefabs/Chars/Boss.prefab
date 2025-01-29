@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5535238247441708860}
   - component: {fileID: 2872500717662641069}
   - component: {fileID: 7656736684440769233}
+  - component: {fileID: 7394675487609619024}
   m_Layer: 11
   m_Name: Boss
   m_TagString: EnemyBoss
@@ -178,11 +179,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 300
   collisionDamage: 20
+  healthBar: {fileID: 0}
   moveSpeed: 2
   chargeSpeed: 8
   chargeDuration: 2
-  throwInterval: 5
   chargeInterval: 10
+--- !u!95 &7394675487609619024
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447064991607439428}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2018654664469454939
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossBulletPrefab: {fileID: 0}
   firePoint: {fileID: 288835672476290804}
+  shootInterval: 1
   bulletSpeed: 5
+  angleBetweenBullets: 45
 --- !u!1 &4280309906478480573
 GameObject:
   m_ObjectHideFlags: 0

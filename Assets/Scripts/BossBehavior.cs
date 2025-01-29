@@ -9,6 +9,8 @@ public class BossBehavior : MonoBehaviour
     private float currentHealth;
     public float collisionDamage = 20f;
 
+    [SerializeField] BossHealthBar healthBar;
+
     [Header("Movement")]
     public float moveSpeed = 2f;
     public float chargeSpeed = 8f;
@@ -29,7 +31,10 @@ public class BossBehavior : MonoBehaviour
         // Boss'un gerekli bileşenlerini ayarla
         gameObject.tag = "EnemyBoss";
         currentHealth = maxHealth;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+        healthBar = GetComponentInChildren<BossHealthBar>();
         rb = GetComponent<Rigidbody2D>();
+        
         player = GameObject.FindGameObjectWithTag("Player");
 
         // BossGun bileşenini bul
@@ -88,6 +93,7 @@ public class BossBehavior : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
         if (currentHealth <= 0)
         {
             Die();

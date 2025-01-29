@@ -128,7 +128,7 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator HandleDeath()
     {
-        yield return new WaitForSeconds(0.8f); // Wait for the animation duration
+        yield return new WaitForSeconds(2f); // Wait for the animation duration
         Destroy(gameObject); // Destroy the GameObject after the animation
     }
 

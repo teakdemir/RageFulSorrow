@@ -28,6 +28,13 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.isKinematic = true; // Add this line
+            return;
+        }
+
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         rb.linearVelocity = new Vector2(

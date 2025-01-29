@@ -120,16 +120,38 @@ public class PlayerStats : MonoBehaviour
         isPushed = false;
     }
 
+    private bool isDead = false;
+
     void Die()
     {
-        animator.SetBool("IsDead", true); // Trigger the dying animation
+        if (isDead) return; // Prevent multiple deaths
+
+        isDead = true;
+        GameStateManager.Instance.FreezeGame();
+
+        // Stop all movement
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.isKinematic = true; // This prevents any physics forces from affecting the player
+        }
+
+        // Play death animation
+        animator.SetBool("IsDead", true);
+
         StartCoroutine(HandleDeath());
     }
 
     private IEnumerator HandleDeath()
     {
-        yield return new WaitForSeconds(2f); // Wait for the animation duration
-        Destroy(gameObject); // Destroy the GameObject after the animation
+        // Wait for animation to complete
+        yield return new WaitForSeconds(2f); // Regular WaitForSeconds is fine now
+
+        // Optional: Add any effects here before destroying
+
+        // Destroy the player
+        Destroy(gameObject);
     }
 
 

@@ -17,8 +17,12 @@ public class ScissorsScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         if (collision.gameObject.CompareTag("Player"))
         {
             // Oyuncuya hasar ver
@@ -55,6 +59,13 @@ public class ScissorsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            return;
+        }
     }
 }

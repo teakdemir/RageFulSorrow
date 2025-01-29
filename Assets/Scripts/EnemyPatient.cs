@@ -23,14 +23,27 @@ public class EnemyPatient : MonoBehaviour
     private float distance;
     private bool isChasing = false;
 
+    private Rigidbody2D rb;
+
     void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            animator.SetBool("IsWalking", false);
+            return;
+        }
+
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         distance = Vector2.Distance(transform.position, playerPos.position);
 
@@ -60,6 +73,9 @@ public class EnemyPatient : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         if (hasExploded) return; // Patladıysa daha fazla işlem yapma
 
         currentHealth -= damageAmount;

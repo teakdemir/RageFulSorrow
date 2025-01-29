@@ -25,14 +25,26 @@ public class EnemyDoctor : MonoBehaviour
     [Header("Loot")]
     public GameObject heartPrefab; // Can prefab'ı (Heart16)
 
+    private Rigidbody2D rb;
     private void OnStart()
     {
         currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            animator.SetBool("IsWalking", false);
+            return;
+        }
+
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         distance = Vector2.Distance(transform.position, playerPos.position);
 
         // Oyuncuyu takip etme mantığı
@@ -54,8 +66,12 @@ public class EnemyDoctor : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         if (collision.gameObject.CompareTag("Player") && Time.time >= nextAttackTime)
         {
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
@@ -79,6 +95,9 @@ public class EnemyDoctor : MonoBehaviour
     
     public void TakeDamage(float damageAmount)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         currentHealth -= damageAmount;
 
         // Ensure player stats are found each time

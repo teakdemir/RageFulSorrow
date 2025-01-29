@@ -50,6 +50,15 @@ public class BossBehavior : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            return;
+        }
+
         if (player == null) return;
 
         // Eğer charge yapmıyorsa normal hızda oyuncuyu takip et
@@ -92,6 +101,9 @@ public class BossBehavior : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         currentHealth -= damage;
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
         if (currentHealth <= 0)
@@ -108,6 +120,9 @@ public class BossBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();

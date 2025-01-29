@@ -17,9 +17,23 @@ public class BossBullet : MonoBehaviour
             rb.linearVelocity = transform.right * speed;
         }
     }
+    void Update()
+    {
+        if (GameStateManager.Instance.IsGameFrozen)
+        {
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            return;
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (GameStateManager.Instance.IsGameFrozen)
+            return;
+
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerStats ps = collision.gameObject.GetComponent<PlayerStats>();

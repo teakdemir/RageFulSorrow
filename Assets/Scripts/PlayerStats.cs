@@ -56,7 +56,7 @@ public class PlayerStats : MonoBehaviour
         StartCoroutine(ResetDamageAnimation());
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        IncreaseRage(5f);
+        IncreaseRage(10f);
 
         if (currentHealth <= 0)
         {

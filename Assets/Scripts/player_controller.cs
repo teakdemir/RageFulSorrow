@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Vector2 movement;
 
+    void Awake()
+    {
+        // Just get the components, no need for DontDestroyOnLoad
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
     void Start()
     {
         if (animator == null)

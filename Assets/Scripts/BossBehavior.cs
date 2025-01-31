@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using static PlayerStats;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BossBehavior : MonoBehaviour
@@ -145,6 +147,7 @@ public class BossBehavior : MonoBehaviour
 
         // Destroy the player
         Destroy(gameObject);
+        SceneManager.LoadScene("Thanks");
     }
 
     void OnCollisionEnter2D(Collision2D collision)

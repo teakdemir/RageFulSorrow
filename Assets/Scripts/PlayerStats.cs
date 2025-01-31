@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -142,6 +143,10 @@ public class PlayerStats : MonoBehaviour
 
         StartCoroutine(HandleDeath());
     }
+    public static class GameData
+    {
+        public static int LastPlayedLevel { get; set; }
+    }
 
     private IEnumerator HandleDeath()
     {
@@ -152,6 +157,8 @@ public class PlayerStats : MonoBehaviour
 
         // Destroy the player
         Destroy(gameObject);
+        GameData.LastPlayedLevel = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene("Retry");
     }
 
 

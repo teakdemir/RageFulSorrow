@@ -15,6 +15,10 @@ public class Guns : MonoBehaviour
     public float fireRate = 0.5f;
     private float nextFireTime = 0f;
 
+    [Header("Audio")]
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip shootingSound; // The shooting sound clip
+
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(
@@ -37,6 +41,12 @@ public class Guns : MonoBehaviour
     private void Shoot()
     {
         Instantiate(bullet, firePoint.position, transform.rotation);
+
+        // Play the shooting sound
+        if (audioSource != null && shootingSound != null)
+        {
+            audioSource.PlayOneShot(shootingSound);
+        }
     }
 }
 

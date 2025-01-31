@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Retry.unity
     guid: f3dbb33d2a0531046b39d069b7472c78
+  - enabled: 1
+    path: Assets/Scenes/Thanks.unity
+    guid: 0c5780c9627389740a8db69be7b39a77
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

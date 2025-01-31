@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 84974791aee819147b3cdf26473ed904
+guid: a0e907472f951624a8fd4174170ad6aa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2147497217805012196
-    second: "d\xFCzduvar_0"
+      213: 4800228125078974396
+    second: "Ba\u015Fl\u0131ks\u0131z319_20250131151116_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "d\xFCzduvar_0"
+      name: "Ba\u015Fl\u0131ks\u0131z319_20250131151116_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8000
-        height: 4500
+        x: 174
+        y: 90
+        width: 243
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c13b79888ae8232e0800000000000000
-      internalID: -2147497217805012196
+      spriteID: cbfeb2c0c06dd9240800000000000000
+      internalID: 4800228125078974396
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "d\xFCzduvar_0": -2147497217805012196
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

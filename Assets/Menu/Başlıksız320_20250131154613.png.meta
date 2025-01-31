@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 84974791aee819147b3cdf26473ed904
+guid: f9f4118763bda7144a89a0db60e2d430
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2147497217805012196
-    second: "d\xFCzduvar_0"
+      213: 152913971993492808
+    second: "Ba\u015Fl\u0131ks\u0131z320_20250131154613_0"
+  - first:
+      213: 5623146051988091884
+    second: "Ba\u015Fl\u0131ks\u0131z320_20250131154613_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "d\xFCzduvar_0"
+      name: "Ba\u015Fl\u0131ks\u0131z320_20250131154613_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8000
-        height: 4500
+        x: 162
+        y: 104
+        width: 260
+        height: 327
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c13b79888ae8232e0800000000000000
-      internalID: -2147497217805012196
+      spriteID: 84dbdd582724f1200800000000000000
+      internalID: 152913971993492808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Ba\u015Fl\u0131ks\u0131z320_20250131154613_1"
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 174
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3f3e4aa8d690e40800000000000000
+      internalID: 5623146051988091884
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "d\xFCzduvar_0": -2147497217805012196
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

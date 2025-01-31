@@ -7699,6 +7699,10 @@ PrefabInstance:
       propertyPath: shootingSound
       value: 
       objectReference: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
+    - target: {fileID: 7042168398363935609, guid: dc255c0da7c318e4781a75af202abdb9, type: 3}
+      propertyPath: currentDamage
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32330,7 +32334,7 @@ Transform:
   m_GameObject: {fileID: 1085497859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.57013, y: 32.3096, z: -10}
+  m_LocalPosition: {x: 90.57225, y: 32.3096, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

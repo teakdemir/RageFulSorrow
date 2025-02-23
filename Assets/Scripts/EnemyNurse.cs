@@ -21,6 +21,12 @@ public class EnemyNurse : MonoBehaviour
     public float collideCooldown = 0.3f;
     private float nextCollideTime;
 
+    [Header("Shooting")]
+    public GameObject scissorsPrefab;
+    public Transform scissorsSpawnPos;
+    public float shootCooldown = 2f; 
+    private float shootTimer;
+
     [Header("Loot")]
     public GameObject heartPrefab; // Can prefab'ı (ör. Heart16)
 
@@ -34,6 +40,7 @@ public class EnemyNurse : MonoBehaviour
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        shootTimer = shootCooldown; // İlk atış için bekleme süresi dolmuş gibi başlat
     }
 
     void Update()
@@ -47,6 +54,7 @@ public class EnemyNurse : MonoBehaviour
             animator.SetBool("IsWalking", false);
             return;
         }
+        
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         distance = Vector2.Distance(transform.position, playerPos.position);
 
@@ -54,20 +62,16 @@ public class EnemyNurse : MonoBehaviour
         {
             if (distance > attackRange)
             {
+                // Oyuncuya yaklaş
                 isChasing = true;
                 animator.SetBool("IsWalking", true);
-                // Oyuncuya yaklaş
-                transform.position = Vector2.MoveTowards(
-                    transform.position,
-                    playerPos.position,
-                    speed * Time.deltaTime
-                );
+                transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
             }
             else
             {
+                // Oyuncu menzil içinde, saldırı başlasın
                 isChasing = false;
                 animator.SetBool("IsWalking", false);
-                // Saldırı
                 Attack();
             }
         }
@@ -101,7 +105,20 @@ public class EnemyNurse : MonoBehaviour
 
     void Attack()
     {
-        // Uzaktan saldırı mantığını buraya ekleyebilirsin
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= shootCooldown)
+        {
+            shootTimer = 0;
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        if (scissorsPrefab != null && scissorsSpawnPos != null)
+        {
+            Instantiate(scissorsPrefab, scissorsSpawnPos.position, Quaternion.identity);
+        }
     }
 
     public void TakeDamage(float damageAmount)
@@ -141,7 +158,7 @@ public class EnemyNurse : MonoBehaviour
     private IEnumerator HandleDeath()
     {
         // Wait for animation to complete
-        yield return new WaitForSeconds(0.8f); // Regular WaitForSeconds is fine now
+        yield return new WaitForSeconds(0.8f);
 
         // Heart16 prefab'ını düşür
         if (heartPrefab != null)
@@ -149,7 +166,7 @@ public class EnemyNurse : MonoBehaviour
             Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
 
-        // Destroy the player
+        // Destroy the enemy
         Destroy(gameObject);
     }
 }

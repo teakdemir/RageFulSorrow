@@ -13,12 +13,13 @@ public class EnemyPatient : MonoBehaviour
 
     [Header("Health & Explosion")]
     public float explosionDamage = 20f;
+    public float explosionRange = 2f; 
     public float maxHealth = 50f;
-    private float currentHealth;
+    public float currentHealth=50f;
 
     [Header("Loot")]
-    public GameObject heartPrefab; // Can prefab'ı (ör. Heart16)
-    private bool hasExploded = false; // Patlama durumu
+    public GameObject heartPrefab; 
+    private bool hasExploded = false; 
 
     private Transform playerPos;
     private float distance;
@@ -60,10 +61,10 @@ public class EnemyPatient : MonoBehaviour
                 speed * Time.deltaTime
             );
 
-            // Patlama mesafesi
-            if (distance <= 2f && !hasExploded)
+            
+            if (distance <= explosionRange && !hasExploded)
             {
-                Die();
+                Explode();
             }
         }
         else
@@ -74,10 +75,8 @@ public class EnemyPatient : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (GameStateManager.Instance.IsGameFrozen)
+        if (GameStateManager.Instance.IsGameFrozen || hasExploded)
             return;
-
-        if (hasExploded) return; // Patladıysa daha fazla işlem yapma
 
         currentHealth -= damageAmount;
 
@@ -88,27 +87,37 @@ public class EnemyPatient : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Explode();
         }
     }
 
-    void Die()
+    void Explode()
     {
+        if (hasExploded) return; 
+
+        hasExploded = true; 
         animator.SetBool("IsDead", true);
-        speed = 0; // **Stop movement**
+        speed = 0; 
+
         if (rb != null)
         {
-            rb.linearVelocity = Vector2.zero; // **Ensure rigidbody stops moving**
+            rb.linearVelocity = Vector2.zero; 
         }
         GetComponent<Collider2D>().enabled = false;
+
+        
+        if (playerStats != null && distance <= explosionRange)
+        {
+            playerStats.TakeDamage(explosionDamage);
+        }
 
         StartCoroutine(HandleDeath());
     }
 
     private IEnumerator HandleDeath()
     {
-        // Wait for animation to complete
-        yield return new WaitForSeconds(0.8f); // Regular WaitForSeconds is fine now
+        
+        yield return new WaitForSeconds(0.8f);
 
         // Heart16 prefab'ını düşür
         if (heartPrefab != null)
@@ -116,10 +125,7 @@ public class EnemyPatient : MonoBehaviour
             Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
 
-        // Destroy the player
+       
         Destroy(gameObject);
     }
 }
-
-
-

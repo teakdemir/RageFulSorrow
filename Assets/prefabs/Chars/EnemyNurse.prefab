@@ -145,7 +145,10 @@ MonoBehaviour:
   pushForce: 5
   damageAmount: 5
   collideCooldown: 0.3
-  heartPrefab: {fileID: 0}
+  scissorsPrefab: {fileID: 3190618758185028633, guid: 2ad6989c7351f9a4ea83196adf0fad68, type: 3}
+  scissorsSpawnPos: {fileID: 5532877207420529612}
+  shootCooldown: 2
+  heartPrefab: {fileID: 8316630203262533024, guid: 7e32db3b733e592418d5dd991808093c, type: 3}
 --- !u!95 &976008553357806741
 Animator:
   serializedVersion: 7
@@ -156,7 +159,7 @@ Animator:
   m_GameObject: {fileID: 8208979564227126875}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a6595229c8c6dee459b5c5afadf58e78, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7cdba55a4327e2142b5da22a41e37f4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -175,7 +178,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8208979564227126875}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a46020ac5dcf34b932209f7dcd485b, type: 3}
   m_Name: 

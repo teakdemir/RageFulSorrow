@@ -103,11 +103,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 3
+  speed: 5
   chaseRange: 6
   animator: {fileID: 5570830052224280257}
   explosionDamage: 20
-  maxHealth: 50
+  explosionRange: 2
+  maxHealth: 100
+  currentHealth: 100
   heartPrefab: {fileID: 0}
 --- !u!95 &5570830052224280257
 Animator:

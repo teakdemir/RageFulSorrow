@@ -53,6 +53,12 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        // Play damage sound effect
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.takeDamage);
+        }
+
         animator.SetBool("IsDamaged", true);
         StartCoroutine(ResetDamageAnimation());
         currentHealth -= damageAmount;
@@ -64,6 +70,7 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
+    
     private IEnumerator ResetDamageAnimation()
     {
         yield return new WaitForSeconds(0.3f);  // Adjust this to match your animation length
@@ -112,6 +119,7 @@ public class PlayerStats : MonoBehaviour
             StartCoroutine(PushCoroutine(pushDirection, pushForce));
         }
     }
+    
     IEnumerator PushCoroutine(Vector2 pushDirection, float pushForce)
     {
         isPushed = true;
@@ -126,6 +134,12 @@ public class PlayerStats : MonoBehaviour
     void Die()
     {
         if (isDead) return; // Prevent multiple deaths
+
+        // Play death sound effect
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.Death);
+        }
 
         isDead = true;
         GameStateManager.Instance.FreezeGame();
@@ -143,6 +157,7 @@ public class PlayerStats : MonoBehaviour
 
         StartCoroutine(HandleDeath());
     }
+    
     public static class GameData
     {
         public static int LastPlayedLevel { get; set; }
@@ -165,5 +180,5 @@ public class PlayerStats : MonoBehaviour
     public float GetCurrentDamage()
     {
         return currentDamage;
-    }
+    }
 }

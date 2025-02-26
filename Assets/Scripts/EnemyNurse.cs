@@ -115,6 +115,12 @@ public class EnemyNurse : MonoBehaviour
 
     void Shoot()
     {
+        // Play scissors sound effect when shooting
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.scissors);
+        }
+
         if (scissorsPrefab != null && scissorsSpawnPos != null)
         {
             Instantiate(scissorsPrefab, scissorsSpawnPos.position, Quaternion.identity);
@@ -144,6 +150,12 @@ public class EnemyNurse : MonoBehaviour
 
     void Die()
     {
+        // Play nurse death sound
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.nursedeath);
+        }
+
         animator.SetBool("IsDead", true);
         speed = 0; // **Stop movement**
         if (rb != null)

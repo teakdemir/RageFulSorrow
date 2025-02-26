@@ -7,25 +7,24 @@ public class SceneControllerScript : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton kontrolü
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Sahne değişiminde yok olmasın
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Fazladan oluşan GameObject'leri yok et
+            Destroy(gameObject);
         }
     }
 
     public void NextLevel()
     {
-        // Aktif sahnenin bir sonrakini yükler
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);
+            Invoke(nameof(UpdateAudio), 0.1f);
         }
         else
         {
@@ -35,14 +34,23 @@ public class SceneControllerScript : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        // Belirtilen sahneyi yükler
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             SceneManager.LoadScene(sceneName);
+            Invoke(nameof(UpdateAudio), 0.1f);
         }
         else
         {
             Debug.LogError("Sahne adı geçerli değil veya Build Settings'te eklenmemiş: " + sceneName);
+        }
+    }
+
+    private void UpdateAudio()
+    {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager != null)
+        {
+            audioManager.UpdateMusic();
         }
     }
 }

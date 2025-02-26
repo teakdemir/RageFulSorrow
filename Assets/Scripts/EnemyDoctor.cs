@@ -45,7 +45,7 @@ public class EnemyDoctor : MonoBehaviour
             return;
         }
 
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         distance = Vector2.Distance(transform.position, playerPos.position);
 
         // Oyuncuyu takip etme mantığı
@@ -113,6 +113,12 @@ public class EnemyDoctor : MonoBehaviour
     
     void Die()
     {
+        // Play doctor death sound
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.doctorDeath);
+        }
+
         animator.SetBool("IsDead", true);
         speed = 0; // **Stop movement**
         if (rb != null)

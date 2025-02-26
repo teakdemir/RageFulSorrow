@@ -91,28 +91,31 @@ public class EnemyPatient : MonoBehaviour
         }
     }
 
-    void Explode()
+void Explode()
+{
+    if (hasExploded) return; 
+
+    hasExploded = true; 
+    animator.SetBool("IsDead", true);
+    speed = 0; 
+
+    if (rb != null)
     {
-        if (hasExploded) return; 
-
-        hasExploded = true; 
-        animator.SetBool("IsDead", true);
-        speed = 0; 
-
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero; 
-        }
-        GetComponent<Collider2D>().enabled = false;
-
-        
-        if (playerStats != null && distance <= explosionRange)
-        {
-            playerStats.TakeDamage(explosionDamage);
-        }
-
-        StartCoroutine(HandleDeath());
+        rb.linearVelocity = Vector2.zero; 
     }
+    GetComponent<Collider2D>().enabled = false;
+
+    // **Patlama sesi çalsın**
+    AudioManager.instance.PlaySFX(AudioManager.instance.explosion);
+
+    if (playerStats != null && distance <= explosionRange)
+    {
+        playerStats.TakeDamage(explosionDamage);
+    }
+
+    StartCoroutine(HandleDeath());
+}
+
 
     private IEnumerator HandleDeath()
     {

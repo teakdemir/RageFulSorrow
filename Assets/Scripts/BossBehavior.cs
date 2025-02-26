@@ -89,6 +89,12 @@ public class BossBehavior : MonoBehaviour
                 chargeTargetPosition = player.transform.position;
             }
 
+            // Play boss charge sound when starting to charge
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySFX(AudioManager.instance.bossCHarge);
+            }
+
             isCharging = true;
             float startTime = Time.time;
             Vector2 chargeDirection = (chargeTargetPosition - transform.position).normalized;
@@ -118,25 +124,37 @@ public class BossBehavior : MonoBehaviour
 
     private bool isDead = false;
 
-    void Die()
+   void Die()
+{
+    if (isDead) return; // Prevent multiple deaths
+
+    // Play boss death sound
+    if (AudioManager.instance != null)
     {
-        if (isDead) return; // Prevent multiple deaths
-
-        isDead = true;
-        GameStateManager.Instance.FreezeGame();
-
-        // Stop all movement
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.isKinematic = true; // This prevents any physics forces from affecting the player
-        }
-
-        animator.SetBool("IsDead", true);
-
-        StartCoroutine(HandleDeath());
+        AudioManager.instance.PlaySFX(AudioManager.instance.bossdeath);
     }
+
+    isDead = true;
+    GameStateManager.Instance.FreezeGame();
+
+    // Stop all movement
+    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    if (rb != null)
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.isKinematic = true; // This prevents any physics forces from affecting the player
+    }
+
+    // Stop shooting
+    if (bossGun != null)
+    {
+        bossGun.StopShooting();
+    }
+
+    animator.SetBool("IsDead", true);
+
+    StartCoroutine(HandleDeath());
+}
 
     private IEnumerator HandleDeath()
     {

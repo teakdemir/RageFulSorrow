@@ -10,19 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5503452399614876423, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_Name
-      value: EnemyPatient
+      value: Patient2
       objectReference: {fileID: 0}
+    - target: {fileID: 5570830052224280257, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fee538bf8bb20d74d90f871e6bc7f3ed, type: 2}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.0638485
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.7634268
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.09893712
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6502999615679302058, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -52,6 +56,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6965216515585857093, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965216515585857093, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095786172112817527, guid: 90b2b4ed3f018ea469cea159e6f334e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 885386423285824114, guid: 21fd78ad26ee49b4399aeb62aff01dc5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

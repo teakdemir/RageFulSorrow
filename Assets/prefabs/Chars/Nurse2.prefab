@@ -8,17 +8,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4647793060218126937, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.71
+      objectReference: {fileID: 0}
+    - target: {fileID: -4647793060218126937, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 976008553357806741, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5939e08f7ec6a464f964f9df23e1d111, type: 2}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.14
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.0723104
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.09893712
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2349240476116593870, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -48,9 +60,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3900539515790997671, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2666258613759379648, guid: 997809434f73fd447b2dc4c29e07158f, type: 3}
     - target: {fileID: 8208979564227126875, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
       propertyPath: m_Name
-      value: EnemyNurse
+      value: Nurse2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9087490601356264412, guid: 1db06d7f7f3094b418b78d098c1327d2, type: 3}
+      propertyPath: heartPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
